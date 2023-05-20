@@ -2,7 +2,6 @@
 <script>
     import SliderHome from "@/components/elements/SliderHome.vue";
     import {mapGetters} from "vuex";
-    import axios from "axios";
 
     export default {
         name: 'HomePage',
@@ -12,18 +11,6 @@
             ...mapGetters(['user']),
         },
 
-        beforeRouteEnter(to, from, next) {
-            axios.get("/api/user")
-                .then((response) => {
-                    next(vm => {
-                        vm.$store.dispatch("user", response.data);
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                    next();
-                });
-        },
     }
 
 </script>

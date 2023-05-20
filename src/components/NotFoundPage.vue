@@ -6,4 +6,5 @@
     export default {
         name: "NotFoundPage"
     }
+
 </script>

@@ -72,10 +72,13 @@
                 }
 
                 try {
-                    const JwtResponse = await axios.post('api/auth/login', data);
+                    const JwtResponse = await axios.post('http://localhost:8080/api/auth/login', data);
 
-                    localStorage.setItem('accessToken', JwtResponse.data.accessToken);
-                    localStorage.setItem('refreshToken', JwtResponse.data.refreshToken);
+                    this.$store.dispatch('setAccessToken', JwtResponse.data.accessToken);
+                    this.$store.dispatch('setRefreshToken', JwtResponse.data.accessToken);
+
+                    const userResponse = await axios.get('http://localhost:8080/api/user');
+                    this.$store.dispatch('user', userResponse.data);
 
                     this.$router.push('/');
                 } catch(ex) {
@@ -93,8 +96,8 @@
                         this.exception = 'Произошла ошибка при отправке запроса';
                     }
                 }
-
             }
+
         }
     }
 </script>

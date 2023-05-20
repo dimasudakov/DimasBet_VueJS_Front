@@ -100,7 +100,7 @@ export default {
                 }
 
                 try {
-                    await axios.post('api/auth/register', data);
+                    await axios.post('http://localhost:8080/api/auth/register', data);
                     this.$router.push('/login');
                 } catch (error) {
                     if (error.response && error.response.data && error.response.data.exceptionName) {
