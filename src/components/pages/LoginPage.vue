@@ -75,7 +75,7 @@
                     const JwtResponse = await axios.post('http://localhost:8080/api/auth/login', data);
 
                     this.$store.dispatch('setAccessToken', JwtResponse.data.accessToken);
-                    this.$store.dispatch('setRefreshToken', JwtResponse.data.accessToken);
+                    this.$store.dispatch('setRefreshToken', JwtResponse.data.refreshToken);
 
                     const userResponse = await axios.get('http://localhost:8080/api/user');
                     this.$store.dispatch('user', userResponse.data);

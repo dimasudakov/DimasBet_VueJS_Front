@@ -43,7 +43,11 @@
         </v-card>
     </div>
 
-    <pagination-element :length="this.length" :page="this.page" @data-updated="paginationDataUpdated"></pagination-element>
+    <pagination-element
+        :length="this.length"
+        :page="this.page"
+        @data-updated="paginationDataUpdated"
+    ></pagination-element>
 
 </template>
 
@@ -135,14 +139,14 @@ export default {
                     this.events = response.data;
                     this.length = response.headers['x-total-pages'];
 
-                    this.selectedDisciplineId = discipline.id;
-                    this.selectedDiscipline = discipline.name;
                 } catch (error) {
                     console.error('Ошибка при получении ставок:', error);
                 }
             },
 
             async handleDisciplineClick(discipline) {
+                this.selectedDisciplineId = discipline.id;
+                this.selectedDiscipline = discipline;
                 this.page = 1;
                 await this.getEventsByDiscipline(discipline);
             },
@@ -152,12 +156,12 @@ export default {
                 return discipline ? discipline.name : '';
             },
 
-            paginationDataUpdated(newPage) {
+            async paginationDataUpdated(newPage) {
                 this.page = newPage;
                 if(!this.selectedDiscipline) {
-                    this.getEventsByPage();
+                    await this.getEventsByPage();
                 } else {
-                    this.getEventsByDiscipline(this.selectedDiscipline);
+                    await this.getEventsByDiscipline(this.selectedDiscipline);
                 }
             },
 
@@ -171,7 +175,7 @@ export default {
                 this.selectedDiscipline = null;
                 this.selectedDisciplineId = null;
                 await this.getEventsByPage();
-            }
+            },
         },
     }
 

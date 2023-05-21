@@ -25,8 +25,9 @@ axios.interceptors.response.use(
             originalRequest._retry = true;
 
             try {
+                const refreshToken = store.getters.refreshToken;
                 const response = await axios.post('http://localhost:8080/api/auth/token', {
-                    refresh_token: store.getters.refreshToken,
+                    refreshToken: refreshToken,
                 });
 
                 const newAccessToken = response.data.accessToken;
@@ -35,8 +36,7 @@ axios.interceptors.response.use(
                 originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
                 return axios(originalRequest);
             } catch (error) {
-                console.error(error);
-                await store.dispatch('logout');
+                // await store.dispatch('logout');
                 return Promise.reject(error);
             }
         }

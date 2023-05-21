@@ -40,7 +40,8 @@
           handlePageChange(newPage) {
               this.currentPage = newPage;
               this.$emit('data-updated', newPage);
-          }
+          },
+
       }
 
   }

@@ -39,6 +39,7 @@ const store = createStore({
             context.commit('logout');
         },
         addExpressOutcome(context, outcome) {
+            console.log(outcome);
             const existingOutcome = context.state.expressOutcomes.find(
                 (item) => item.eventId === outcome.eventId
             );

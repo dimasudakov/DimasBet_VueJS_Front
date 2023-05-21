@@ -37,7 +37,7 @@
 
 <script>
 
-  import DialogElement from "@/components/elements/dialogs/DialogElement.vue";
+  import DialogElement from "@/components/elements/dialogs/ExpressDialogElement.vue";
   import UpdateOutcomeDialog from "@/components/elements/dialogs/UpdateOutcomeDialog.vue";
   import CompleteOutcomeDialog from "@/components/elements/dialogs/CompleteOutcomeDialog.vue";
 

@@ -63,6 +63,7 @@
 
       methods: {
           addToExpress() {
+              console.log(this.eventOutcome);
               this.$store.dispatch('addExpressOutcome', this.eventOutcome)
                   .then(() => {
                       this.message = 'Ставка добавлена в экспресс!';

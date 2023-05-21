@@ -14,8 +14,8 @@
             Мой профиль
             <v-menu activator="parent">
                 <v-list>
-                    <v-list-item>
-                        <v-list-item-title v-if="balance"> Баланс: <a class="balance">{{balance}}</a></v-list-item-title>
+                    <v-list-item :key="0" :value="0">
+                        <v-list-item-title v-if="balance" @click="() => myBalance()"> Баланс: <a class="balance">{{balance}}</a></v-list-item-title>
                     </v-list-item>
                     <v-list-item :key="1" :value="1">
                         <v-list-item-title @click="() => myDeals()">Мои ставки</v-list-item-title>
@@ -58,10 +58,10 @@ import AddEventDialog from "@/components/elements/dialogs/CreateEventDialog.vue"
                     BalanceResponse = await axios.get("api/betting/user/balance", {
                         baseURL: "http://localhost:8081/"
                     });
+                    this.balance = BalanceResponse.data;
                 } catch (error) {
                     console.log("error");
                 }
-                this.balance = BalanceResponse.data;
             },
 
             handleLogout() {
@@ -78,6 +78,10 @@ import AddEventDialog from "@/components/elements/dialogs/CreateEventDialog.vue"
 
             handleExpress() {
                 this.$router.push('/account/express');
+            },
+
+            myBalance() {
+                this.$router.push('/account/balance');
             },
 
             handleUpdateBalance() {
