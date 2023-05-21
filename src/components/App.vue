@@ -1,12 +1,10 @@
 <script>
 
-// import Header from "@/components/Header.vue";
 import Footer from "@/components/elements/Footer.vue";
 import Header2 from "@/components/elements/Header2.vue";
 
     export default {
         components: {
-            // Header,
             Footer,
             Header2
         },

@@ -5,6 +5,9 @@
             Дисциплина
             <v-menu activator="parent">
                 <v-list>
+                    <v-list-item :key="0" value="0">
+                        <v-list-item-title @click="selectAllEvents">Все</v-list-item-title>
+                    </v-list-item>
                     <v-list-item
                         v-for="(discipline, index) in disciplines"
                         :key="index"
@@ -33,7 +36,10 @@
 
     <div>
         <v-card v-for="event in events" :key="event.id">
-            <event-element :event="event" :discipline-name="getDisciplineName(event.disciplineId)" />
+            <event-element :event="event"
+                           :discipline-name="getDisciplineName(event.disciplineId)"
+                           @update="update"
+            />
         </v-card>
     </div>
 
@@ -116,12 +122,12 @@ export default {
                 }
             },
 
-            async handleDisciplineClick(discipline) {
+            async getEventsByDiscipline(discipline) {
                 try {
                     const response = await axios.get('/api/betting/manager/events/by-discipline', {
                         params: {
                             disciplineId: discipline.id,
-                            page: 1,
+                            page: this.page,
                             eventsPerPage: this.eventsPerPage
                         },
                         baseURL: 'http://localhost:8081/',
@@ -136,6 +142,11 @@ export default {
                 }
             },
 
+            async handleDisciplineClick(discipline) {
+                this.page = 1;
+                await this.getEventsByDiscipline(discipline);
+            },
+
             getDisciplineName(disciplineId) {
                 const discipline = this.disciplines.find((d) => d.id === disciplineId);
                 return discipline ? discipline.name : '';
@@ -143,7 +154,23 @@ export default {
 
             paginationDataUpdated(newPage) {
                 this.page = newPage;
+                if(!this.selectedDiscipline) {
+                    this.getEventsByPage();
+                } else {
+                    this.getEventsByDiscipline(this.selectedDiscipline);
+                }
+            },
+
+            update() {
+                this.page = 1;
                 this.getEventsByPage();
+            },
+
+            async selectAllEvents() {
+                this.page = 1;
+                this.selectedDiscipline = null;
+                this.selectedDisciplineId = null;
+                await this.getEventsByPage();
             }
         },
     }

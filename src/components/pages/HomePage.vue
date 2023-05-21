@@ -17,8 +17,19 @@
 
 <template>
     <div>
-        <h3 v-if="user"> Hi, {{user.firstName}} {{user.lastName}}</h3>
-        <h3 v-else> You are not logged in</h3>
+        <v-sheet
+            v-if="user"
+            elevation="12"
+            width="60%"
+            min-width="300px"
+            rounded="lg"
+            class="pa-4 mx-auto"
+            color="primary"
+        >
+            <v-row class="justify-center">
+                <h3>С возвращением, {{ user.firstName }} {{ user.lastName }}!</h3>
+            </v-row>
+        </v-sheet>
         <SliderHome></SliderHome>
     </div>
 </template>

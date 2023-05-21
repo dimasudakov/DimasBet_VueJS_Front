@@ -39,7 +39,7 @@
 <script>
 import {mapGetters} from "vuex";
 import axios from "axios";
-import AddEventDialog from "@/components/elements/dialogs/AddEventDialog.vue";
+import AddEventDialog from "@/components/elements/dialogs/CreateEventDialog.vue";
 
     export default {
         // eslint-disable-next-line vue/multi-word-component-names
@@ -73,7 +73,7 @@ import AddEventDialog from "@/components/elements/dialogs/AddEventDialog.vue";
             },
 
             myDeals() {
-
+                this.$router.push('/account/history');
             },
 
             handleExpress() {

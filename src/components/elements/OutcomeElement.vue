@@ -6,7 +6,7 @@
                class="pa-4 text-center mx-auto"
                color="rgba(248, 250, 252, 0.28)">
           <v-row align="center">
-              <v-col cols="6">
+              <v-col cols="3">
                   <span class="label">{{this.outcome.outcomeType}}</span>
               </v-col>
               <v-spacer></v-spacer>
@@ -25,6 +25,11 @@
                   >
                   </update-outcome-dialog>
               </v-col>
+              <v-col v-if="isBettingManager">
+                  <complete-outcome-dialog
+                        :outcome_id="this.outcome.id"
+                  ></complete-outcome-dialog>
+              </v-col>
           </v-row>
       </v-sheet>
   </div>
@@ -34,10 +39,11 @@
 
   import DialogElement from "@/components/elements/dialogs/DialogElement.vue";
   import UpdateOutcomeDialog from "@/components/elements/dialogs/UpdateOutcomeDialog.vue";
+  import CompleteOutcomeDialog from "@/components/elements/dialogs/CompleteOutcomeDialog.vue";
 
   export default {
       name: 'OutcomeElement',
-      components: {UpdateOutcomeDialog, DialogElement},
+      components: {CompleteOutcomeDialog, UpdateOutcomeDialog, DialogElement},
       props: {
           outcome: {
               type: Object,

@@ -12,7 +12,7 @@
                 <h3 class="mt-2">Добавить новое событие</h3>
             </v-card-title>
 
-            <v-chip v-if="message" class="ma-3" color="blue" text-color="white">
+            <v-chip v-if="message" class="message" color="blue" text-color="white">
                 {{message}}
             </v-chip>
 
@@ -70,20 +70,22 @@
 
             async createEvent() {
 
-                const url = 'http://localhost:8083/api/betting/manager/events';
+                const url = 'http://localhost:8081/api/betting/manager/events';
                 const requestBody = {
-                    discipline: this.discipline,
+                    disciplineName: this.discipline,
                     country: this.country,
                     city: this.city,
                     competitionName: this.competitionName,
                     startDate: this.startDate,
-                    competitor1: this.competitor1,
-                    competitor2: this.competitor2
+                    competitor1Name: this.competitor1,
+                    competitor2Name: this.competitor2
                 };
 
                 try {
                     await axios.post(url, requestBody);
-                    this.message = "Исход добавлен"
+                    this.message = "Исход добавлен";
+                    this.exitButtonName = "Ок"
+                    document.querySelector('.exit-button').style.color = 'green';
                 } catch (error) {
                     this.message = "Не получилось добавить ставку"
                 }
@@ -96,4 +98,13 @@
 .exit-button{
     color: red;
 }
+.message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 20%;
+    width: 60%;
+}
+
 </style>

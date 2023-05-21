@@ -8,6 +8,7 @@ import NotFoundPage from "@/components/NotFoundPage.vue";
 import LinePage from "@/components/pages/LinePage.vue";
 import EventPage from "@/components/pages/EventPage.vue";
 import ExpressPage from "@/components/pages/ExpressPage.vue";
+import DealHistoryPage from "@/components/pages/DealHistoryPage.vue";
 
 
 const routes = [
@@ -40,6 +41,10 @@ const routes = [
     {
         path: '/account/express',
         component: ExpressPage
+    },
+    {
+        path: '/account/history',
+        component: DealHistoryPage
     }
 ]
 

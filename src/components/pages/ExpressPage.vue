@@ -9,7 +9,7 @@
     >
         <div class="current-express">
             <v-chip class="ma-2" color="#0027c4" text-color="white">
-                Текущий экспресс
+                <h3>Текущий экспресс</h3>
             </v-chip>
         </div>
 
@@ -41,7 +41,7 @@
         </div>
 
         <div v-else class="no-outcomes">
-            {{this.exception}}
+            Нет ставок
         </div>
     </v-sheet>
 </template>
@@ -57,7 +57,6 @@
 
         data() {
             return {
-                exception: "Нет ставок",
                 expressOutcomes: null,
                 coefficient: null,
             }

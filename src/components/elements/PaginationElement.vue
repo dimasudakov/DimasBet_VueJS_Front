@@ -9,6 +9,7 @@
                                 :page="currentPage"
                                 v-on:update:model-value="handlePageChange"
                                 class="my-4"
+                                color="primary"
                         ></v-pagination>
                     </v-container>
                 </v-col>
@@ -35,6 +36,7 @@
           this.totalLength = this.length;
       },
       methods: {
+
           handlePageChange(newPage) {
               this.currentPage = newPage;
               this.$emit('data-updated', newPage);

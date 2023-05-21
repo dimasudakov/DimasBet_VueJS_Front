@@ -20,6 +20,11 @@
                 <v-btn variant="text" color="#2e0081" @click="redirectToEventPage(this.disciplineName, this.event.id)">
                     Подробнее
                 </v-btn>
+                <v-spacer></v-spacer>
+                <delete-event-dialog v-if="isBettingManager"
+                    :event_id="this.event.id"
+                    @update="update"
+                />
             </v-card-actions>
         </v-card>
     </div>
@@ -27,14 +32,27 @@
 
 <script>
 
+import DeleteEventDialog from "@/components/elements/dialogs/DeleteEventDialog.vue";
+
 export default {
     name: 'EventElement',
+    components: {DeleteEventDialog},
     props: {
         event: {
             type: Object,
             required: true,
         },
         disciplineName: require
+    },
+
+    computed: {
+        isBettingManager() {
+            if(this.$store.getters.user === null || this.$store.getters.user === undefined) {
+                return false;
+            }
+            const userRoles = this.$store.getters.user.roles;
+            return userRoles.includes("ROLE_BETTING_MANAGER");
+        }
     },
 
     methods: {
@@ -51,6 +69,9 @@ export default {
             return `${day}.${month}.${year}, ${hours}:${minutes}`;
         },
 
+        update() {
+            this.$emit('update');
+        },
 
         redirectToEventPage(discipline_name, event_id) {
             this.$router.push({ name: 'Event', params: { discipline_name, event_id } });
