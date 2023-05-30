@@ -15,7 +15,7 @@
             <v-menu activator="parent">
                 <v-list>
                     <v-list-item :key="0" :value="0">
-                        <v-list-item-title v-if="balance" @click="() => myBalance()"> Баланс: <a class="balance">{{balance}}</a></v-list-item-title>
+                        <v-list-item-title v-if="balance != null" @click="() => myBalance()"> Баланс: <a class="balance">{{balance}}</a></v-list-item-title>
                     </v-list-item>
                     <v-list-item :key="1" :value="1">
                         <v-list-item-title @click="() => myDeals()">Мои ставки</v-list-item-title>

@@ -3,7 +3,7 @@
         <h1>Баланс</h1>
         <v-row class="balance">
             <v-col cols="4">
-                <v-card v-if="this.balance.rub" color="primary">
+                <v-card v-if="this.balance.rub != null" color="primary">
                     <v-card-text>
                         <v-row>
                             <v-col cols="3">
@@ -17,7 +17,7 @@
                 </v-card>
             </v-col>
             <v-col cols="4">
-                <v-card v-if="this.balance.usd" color="primary">
+                <v-card v-if="this.balance.usd != null" color="primary">
                     <v-card-text>
                         <v-row>
                             <v-col cols="3">
@@ -31,7 +31,7 @@
                 </v-card>
             </v-col>
             <v-col cols="4">
-                <v-card v-if="this.balance.eur" color="primary">
+                <v-card v-if="this.balance.eur != null" color="primary">
                     <v-card-text>
                         <v-row>
                             <v-col cols="3">

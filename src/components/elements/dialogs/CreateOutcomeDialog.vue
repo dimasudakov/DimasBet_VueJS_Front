@@ -38,7 +38,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="primary" @click="addOutcome">Добавить</v-btn>
-                    <v-btn color="red" @click="dialog = false" >Отмена</v-btn>
+                    <v-btn color="red" @click="closeDialog" >Отмена</v-btn>
                 </v-card-actions>
 
             </v-card>
@@ -85,9 +85,14 @@
                 try {
                     await axios.post(url, requestBody);
                     this.message = "Исход добавлен"
+                    this.$emit('updated');
                 } catch (error) {
                     this.message = "Не получилось добавить ставку"
                 }
+            },
+
+            closeDialog() {
+                this.dialog = false;
             }
         }
     }

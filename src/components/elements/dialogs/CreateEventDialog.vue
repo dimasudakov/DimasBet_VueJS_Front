@@ -87,7 +87,7 @@
                     this.exitButtonName = "Ок"
                     document.querySelector('.exit-button').style.color = 'green';
                 } catch (error) {
-                    this.message = "Не получилось добавить ставку"
+                    this.message = "Не получилось добавить событие"
                 }
             }
         }

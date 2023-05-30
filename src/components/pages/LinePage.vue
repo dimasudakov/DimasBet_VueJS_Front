@@ -89,7 +89,7 @@ export default {
             selectedDiscipline: "",
             selectedDisciplineId: "",
 
-            eventsPerPage: 1,
+            eventsPerPage: 3,
             length: null,
             page: 1
         }),
